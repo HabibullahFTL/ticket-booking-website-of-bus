@@ -50,7 +50,7 @@ nav ul li a:hover, a.active{
     float: left;
     margin-left: 50px;
 }
-.booking-content h1{
+.booking-content h1{ 
     font-size: 70px;
     text-transform: uppercase;
     font-family: 'Bebas Neue', cursive;

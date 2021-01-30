@@ -71,7 +71,7 @@ function purchaseMessage() {
         </tr>
         <tr>
             <th>Economy</th>
-            <td>${economyCount} Ticket</td>
+            <td>${economyCount} Ticket</td> 
         </tr>
         <tr>
             <th>Total Cost<small>(Including VAT)</small></th>
