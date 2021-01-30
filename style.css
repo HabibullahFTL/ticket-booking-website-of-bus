@@ -131,25 +131,25 @@ nav ul li a:hover, a.active{
 }
 
 /* Message Area Design  */
-#purchase-message-area{
+#booking-message-area{
     padding: 20px;
     display: none;
 }
 .message{
     margin: 0 0 15px 0 ;
 }
-#purchase-message-area table{
+#booking-message-area table{
     margin: auto;
     margin-bottom: 20px;
 }
-#purchase-message-area table,
-#purchase-message-area td,
-#purchase-message-area th{
+#booking-message-area table,
+#booking-message-area td,
+#booking-message-area th{
     border: 1px solid green;
     border-collapse: collapse;
 }
-#purchase-message-area td,
-#purchase-message-area th{
+#booking-message-area td,
+#booking-message-area th{
     padding: 5px 10px;
     text-align: left;
 }

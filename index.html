@@ -37,7 +37,7 @@
         </div>
 
         <div class="booking-form">
-            <div id="purchase-area">
+            <div id="booking-area">
                 <h3>Explore By Bus</h3>
                 <div class="inputs">
                     <div class="input-group">
@@ -76,7 +76,7 @@
                     <div class="input-group f-class">
                         <div>
                             <label for="">First Class ($150)</label>
-                            <input class="inp-style inp-width" type="number" id="first-class" value="0">
+                            <input class="inp-style inp-width" type="number" id="first-class" value="0"  onkeyup="convertSmallerToZero('first-class')">
                         </div>
                         <div class="plus-minus-btn">
                             <button onclick="ticketHandler('first-class',true)">+</button>
@@ -86,7 +86,7 @@
                     <div class="input-group f-class">
                         <div>
                             <label for="">Economy ($100)</label>
-                            <input class="inp-style inp-width" type="number" id="economy" value="0">
+                            <input class="inp-style inp-width" type="number" id="economy" value="0" onkeyup="convertSmallerToZero('economy')">
                         </div>
                         <div class="plus-minus-btn">
                             <button onclick="ticketHandler('economy',true)">+</button>
@@ -123,10 +123,10 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn-style" onclick="purchaseMessage()">Book Now</button>
+                <button class="btn-style" onclick="bookMessage()">Book Now</button>
             </div>
 
-            <div id="purchase-message-area">
+            <div id="booking-message-area">
                 
             </div>
         </div>

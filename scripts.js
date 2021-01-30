@@ -1,3 +1,8 @@
+// In this file Functions are divided in 3 part
+// 1. Main Part
+// 2. Extra Part
+// 3. Some short functions for multi purpose use
+// ================== [ Main Part ] ==================
 // Calculating Sub-Total Price, VAT & Total Price of ticket.
 function calculateTotal() {
     const firstClassCount = getInputValue('first-class');
@@ -20,7 +25,7 @@ function ticketHandler(ticketCatagory, isIncrease) {
     // Checking what increase, decrease or not to decrease if value 0 
     if (isIncrease == true) {
         ticketCount.value = getInputValue(ticketCatagory) + 1;
-    } else if (isIncrease == false && getInputValue(ticketCatagory) == 0) {
+    } else if (isIncrease == false && getInputValue(ticketCatagory) <= 0) {
         ticketCount.value = 0;
     } else {
         ticketCount.value = getInputValue(ticketCatagory) - 1;
@@ -28,26 +33,35 @@ function ticketHandler(ticketCatagory, isIncrease) {
     // Updating Sub-total, VAT & Total
     calculateTotal()
 }
+// For changing input value to zero if the value is smaller than 0
+function convertSmallerToZero(ticketCatagory) {
+    const ticketCount = getInputValue(ticketCatagory);
 
-// Purchase Message
-function purchaseMessage() {
+    if (ticketCount <= 0) {
+        document.getElementById(ticketCatagory).value = 0;
+    }
+}
+
+//================== [ Extra Part ] =================
+// booking Message
+function bookMessage() {
     const from = document.getElementById('from').value;
     const to = document.getElementById('to').value;
     const finalDepartureDate = document.getElementById('departure-date').value;
     const finalReturnDate = document.getElementById('return-date').value;
     const firstClassCount = getInputValue('first-class');
     const economyCount = getInputValue('economy');
-    const purchaseArea = document.getElementById('purchase-area');
-    const purchaseMessageArea = document.getElementById('purchase-message-area');
+    const bookingArea = document.getElementById('booking-area');
+    const bookingMessageArea = document.getElementById('booking-message-area');
     const subTotalCost = firstClassCount * 150 + economyCount * 100;
     const totalCost = subTotalCost + subTotalCost * 0.1;
 
     // Checking that both ticket input field are zero or not
     if (firstClassCount == 0 && economyCount == 0) {
         // IF both input field are zero, then it will be shown
-        alert('Select at least one ticket that you want to buy.')
+        alert('Select at least one ticket that you want to book.')
     } else {
-        const message = `<p class='message'>You have successfully purchased ${firstClassCount + economyCount} ticket.</p>
+        const message = `<p class='message'>You have successfully booked ${firstClassCount + economyCount} ticket.</p>
         <table>
         <tr>
             <th>From</th>
@@ -78,45 +92,46 @@ function purchaseMessage() {
             <td>$${totalCost}</td>
         </tr>
         </table>
-        <button class="btn-style" onclick="purchaseAgain()">Purchase Again</button>
-        `;
+        <button class="btn-style" onclick="bookAgain()">Book Another Ticket</button>`;
 
-        // Hiding purchase area
-        purchaseArea.style.display = 'none';
+        // Hiding book area
+        bookingArea.style.display = 'none';
 
         // Showing successful message
-        purchaseMessageArea.style.display = "block";
-        purchaseMessageArea.innerHTML = message;
+        bookingMessageArea.style.display = "block";
+        bookingMessageArea.innerHTML = message;
     }
 }
 
-// Purchase Agian
-function purchaseAgain(){
-    const purchaseArea = document.getElementById('purchase-area');
-    purchaseArea.style.display = 'block';
+// book Agian
+function bookAgain(){
+    const bookingArea = document.getElementById('booking-area');
+    bookingArea.style.display = 'block';
 
     document.getElementById('first-class').value = 0;
     document.getElementById('economy').value = 0;
 
-    const purchaseMessageArea = document.getElementById('purchase-message-area');
-    purchaseMessageArea.style.display = 'none';
+    const bookingMessageArea = document.getElementById('booking-message-area');
+    bookingMessageArea.style.display = 'none';
+
+    calculateTotal()
+    setDate()
 }
 
+//================== [ Some short functions for multi purpose use] =================
 // Geting input name to input value in a integer
 function getInputValue(inputName) {
     const inputValue = parseInt(document.getElementById(inputName).value);
     return inputValue;
 }
-//================== Extra Validation =================
-// Set Default Date Value
-function setDate() {
-    // It will set the departure date to current date
-    const departureDate = customDateFormat();
-    document.getElementById('departure-date').value = departureDate;
 
-    // It will set the return date to 7 days fast from current date
-    const returnDate = customDateFormat(7);
-    document.getElementById('return-date').value = returnDate;
+// Checking & updating a value if it is less than 10
+function isLessThanTen(value) {
+    if (value < 10) {
+        return "0" + value;
+    } else {
+        return value;
+    }
 }
 
 // Making a custom Date Formate
@@ -141,12 +156,14 @@ function customDateFormat(addDay,fixedDate,format) {
     }
 }
 
-// Checking & updating a value if it is less than 10
-function isLessThanTen(value) {
-    if (value < 10) {
-        return "0" + value;
-    } else {
-        return value;
-    }
+// Set Default Date Value
+function setDate() {
+    // It will set the departure date to current date
+    const departureDate = customDateFormat();
+    document.getElementById('departure-date').value = departureDate;
+
+    // It will set the return date to 7 days fast from current date
+    const returnDate = customDateFormat(7);
+    document.getElementById('return-date').value = returnDate;
 }
 
